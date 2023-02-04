@@ -5,7 +5,7 @@ const Movies = () =>{
     return (
       <>
       {/* <SearchBar> */}
-        <p>Search Movies List will be here</p>
+        <h1>Search Movies List will be here</h1>
         <ul>
           <li></li>
         </ul>
