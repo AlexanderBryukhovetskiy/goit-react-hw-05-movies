@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { fetchPopularMovies } from "components/functions";
-import Loader from "components/Loader";
 import { ToastContainer, toast } from 'react-toastify';
+import { fetchPopularMovies } from "components/functions";
+import PopularList from "components/PopularList";
+import Loader from "components/Loader";
 
+import css from './PagesStyles.module.css';
 
 const Home = () =>{
   const [popularList, setPopularList] = useState([]);
@@ -13,12 +15,11 @@ const Home = () =>{
     const getPopularList = async () => {
       try {
         setLoading(true);
-        
         const response = await fetchPopularMovies();
-        console.log('response.data.results : ', response.data.results);
+        //console.log('response.data.results : ', response.data.results);
 
         if (response.data.results.length > 0) {
-          setPopularList(...response.data.results);
+          setPopularList(response.data.results);
         }
       
         if ( !response.data.results.length ) {
@@ -31,34 +32,20 @@ const Home = () =>{
       }
       finally { setLoading(false) };
     }
-
     getPopularList();
-    
   }, [] );
 
   console.log('popularList after useEffect: ' , popularList, ' , ', Date.now());
 
     return (
-  <>
-      <h1>Trending today</h1> 
-
-      { error && <h1> Something wrong. Try to reload this page.</h1> }
-      { loading && <Loader/> }
-            { popularList.length > 0 && 
-      (<>
-        <h2>popularList.length in RENDER:  ${popularList.length}</h2>
-          <ul /*className={css.ImageGallery }*/>
-            {popularList.map( ({popularListItem}) => (
-              <li key={popularListItem.id}>{popularListItem.title
-              }</li>))
-            }
-          </ul>
-      </>)
-      }
-
-      <ToastContainer autoClose={3000}/> 
-  </>
-  );
+      <div className={css.home}>
+        <h1>Trending today</h1> 
+        { error && <h1> Something wrong. Try to reload this page.</h1> }
+        { loading && <Loader/> }
+        { popularList.length > 0 && <PopularList list={popularList}/> }
+        <ToastContainer autoClose={3000}/> 
+      </div>
+    );
 }
 
 export {Home};
