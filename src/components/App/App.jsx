@@ -20,7 +20,7 @@ const App = () => {
 
 return (
     <>
-      <Routes className={css.container} basename="/goit-react-hw-05-movies">
+      <Routes className={css.container}>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home/>}/>
           <Route path ='movies' element={<Movies/>}/>
