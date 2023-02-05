@@ -1,24 +1,27 @@
 import { useState, useEffect } from "react";
 import { fetchPopularMovies } from "components/functions";
-// import Loader from "components/Loader";
+import Loader from "components/Loader";
 import { ToastContainer, toast } from 'react-toastify';
-// import css from ???;
+
 
 const Home = () =>{
   const [popularList, setPopularList] = useState([]);
-  // const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect( () => {
     const getPopularList = async () => {
       try {
-        // setLoading(true);
+        setLoading(true);
 
         const response = await fetchPopularMovies();
 
-        setPopularList(...response.data.results);
+        console.log('response.data.results : ', response.data.results);
 
-        console.log(response.data.results);
+        if (response.data.results.length > 0) {
+
+          setPopularList(...response.data.results);
+        }
       
         if ( !response.data.results.length ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page.`));
@@ -28,12 +31,15 @@ const Home = () =>{
       catch(error) { 
         setError(error);
       }
-      // finally { setLoading(false) };
+      finally { setLoading(false) };
     }
 
     getPopularList();
-    }
-  );
+    
+  }, [] );
+
+  console.log('popularList after useEffect: ' , popularList, ' , ', Date.now());
+
   
   return (
   <>
@@ -41,15 +47,18 @@ const Home = () =>{
 
       { error && <h1> Something wrong. Try to reload this page.</h1> }
 
-      {/* { loading && <Loader/> } */}
+      { loading && <Loader/> }
       
       { popularList.length > 0 && 
+      (<>
+        <h2>popularList.length in RENDER:  ${popularList.length}</h2>
           <ul /*className={css.ImageGallery }*/>
-            {popularList.map( popularListItem => (
-              <li key={popularListItem.id}>{popularListItem.original_title
+            {popularList.map( ({popularListItem}) => (
+              <li key={popularListItem.id}>{popularListItem.title
               }</li>))
             }
           </ul>
+      </>)
       }
 
       <ToastContainer autoClose={3000}/> 
