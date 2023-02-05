@@ -2,6 +2,7 @@
 //npm i axios
 //npm install react-router-dom
 //npm i react-toastify
+//npm i react-loader-spinner
 
 import { Routes, Route} from "react-router-dom";
 import css from './App.module.css';
