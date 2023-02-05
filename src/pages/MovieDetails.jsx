@@ -29,9 +29,9 @@ const MovieDetails = (movieId) => {
       // finally { setLoading(false) };
     }
     getMovieDetails();
-  }, [] );
+  }, [movieId] );
 
-  return <>
+  return (<>
   <p> /*MovieDetails will be here*/</p>
 
   <div>
@@ -45,7 +45,7 @@ const MovieDetails = (movieId) => {
     </ul> */}
   </div>
   
-  </>
+  </>)
 }
 
 export {MovieDetails};
