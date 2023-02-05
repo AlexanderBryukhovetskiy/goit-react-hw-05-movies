@@ -2,22 +2,29 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './PopularList.module.css';
 
-const PopularList = ({list}) => {
+const PopularList = ({ movieList }, handleMovieChoose ) => {
+
+  const handleClick = (movie) => {
+    
+    console.log(movie)
+    // handleMovieChoose(movie);
+  }
+
   return (
     <ul className={css.popularList}>
-      {list.map( listItem => (
-        <li key={listItem.id}>
-          <NavLink to='movies/:movieId' className={css.MovieTitle}>
-          {listItem.title || listItem.name}</NavLink>
+      {movieList.map( movie => (
+        <li key={movie.id} >
+          <NavLink to='movies/:movieId' onClick={handleClick} className={css.MovieTitle}> {movie.title || movie.name} </NavLink>
         </li>
       ))}
     </ul>
   );
 };
 
-PopularList.propTypes={
-  list: PropTypes.arrayOf(
+PopularList.propTypes = {
+  movieList: PropTypes.arrayOf(
     PropTypes.object).isRequired,
+  handleMovieChoose: PropTypes.func,
 };
 
 export default PopularList;

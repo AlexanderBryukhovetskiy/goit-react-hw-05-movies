@@ -5,6 +5,8 @@
 //npm i react-loader-spinner
 
 import { Routes, Route} from "react-router-dom";
+import { useState } from "react";
+import PropTypes from 'prop-types';
 import css from './App.module.css';
 import Cast from "components/Cast";
 import Reviews from "components/Reviews";
@@ -15,16 +17,22 @@ import { NotFoundPage } from "pages/NotFoundPage";
 
 import Layout from 'components/Layout';
 
-
 const App = () => {
+  const [movieId, setMovieId] = useState(null);
 
-return (
+  const handleMovieChoose = (movie) => {
+    console.log('movie in App : ', movie)
+
+    setMovieId(movie.id);
+  }
+
+  return (
     <>
       <Routes className={css.container}>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<Home/>}/>
+          <Route index element={<Home onClick={handleMovieChoose}/>}/>
           <Route path ='movies' element={<Movies/>}/>
-          <Route path='movies/:movieId' element={<MovieDetails/>}/>
+          <Route path='movies/:movieId' element={<MovieDetails movieId={movieId}/>}/>
           <Route path='movies/:movieId/cast' element={<Cast/>}/>
           <Route path='movies/:movieId/reviews' element={<Reviews/>}/>
           <Route path='*' element={<NotFoundPage/>}/>
@@ -32,6 +40,10 @@ return (
       </Routes>
     </>
   );
+};
+
+App.protoTypes = {
+  movie: PropTypes.object,
 };
 
 

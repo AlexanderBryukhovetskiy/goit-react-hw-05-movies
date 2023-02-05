@@ -1,7 +1,10 @@
+h1 {
+  margin-left: 2px;
+}
+
 .popularList{
-  margin-left: 10px;
-  padding:0 10px;
-  font-size:12px;
+  margin-left: 20px;
+  padding: 20px;
   list-style: disc;
 }
 
@@ -10,9 +13,11 @@ li + li {
 }
 
 li {
+  font-size: 14px;
   text-decoration: underline;
 }
 
 .MovieTitle {
+  font-size: 14px;
   color: rgba(6, 25, 234, 0.642);
 }
