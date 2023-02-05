@@ -13,13 +13,11 @@ const Home = () =>{
     const getPopularList = async () => {
       try {
         setLoading(true);
-
+        
         const response = await fetchPopularMovies();
-
         console.log('response.data.results : ', response.data.results);
 
         if (response.data.results.length > 0) {
-
           setPopularList(...response.data.results);
         }
       
@@ -40,16 +38,13 @@ const Home = () =>{
 
   console.log('popularList after useEffect: ' , popularList, ' , ', Date.now());
 
-  
-  return (
+    return (
   <>
       <h1>Trending today</h1> 
 
       { error && <h1> Something wrong. Try to reload this page.</h1> }
-
       { loading && <Loader/> }
-      
-      { popularList.length > 0 && 
+            { popularList.length > 0 && 
       (<>
         <h2>popularList.length in RENDER:  ${popularList.length}</h2>
           <ul /*className={css.ImageGallery }*/>
