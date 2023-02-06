@@ -4,17 +4,12 @@ import css from './PopularList.module.css';
 
 const PopularList = ({ movieList }, handleMovieChoose ) => {
 
-  const handleClick = (movie) => {
-    
-    console.log(movie)
-    // handleMovieChoose(movie);
-  }
-
   return (
     <ul className={css.popularList}>
       {movieList.map( movie => (
         <li key={movie.id} >
-          <NavLink to='movies/:movieId' onClick={handleClick} className={css.MovieTitle}> {movie.title || movie.name} </NavLink>
+          <NavLink to={`movies/${movie.id}`} 
+          className={css.MovieTitle}> {movie.title || movie.name} </NavLink>
         </li>
       ))}
     </ul>

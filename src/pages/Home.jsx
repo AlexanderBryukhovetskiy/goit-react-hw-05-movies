@@ -38,8 +38,8 @@ const Home = ({ handleMovieChoose }) =>{
 
   console.log('popularList after useEffect: ' , popularList, ' , ', Date.now());
 
-  const handleClick = ({movie}) => {
-    handleMovieChoose({movie});
+  const handleClick = (movieId) => {
+    handleMovieChoose(movieId);
   }
 
   return (
@@ -50,7 +50,8 @@ const Home = ({ handleMovieChoose }) =>{
         { error && <h1> Something wrong. Try to reload this page.</h1> }
         { loading && <Loader/> }
         { popularList.length > 0 && 
-        <PopularList movieList={popularList} onClick={handleClick}/> }
+        // <PopularList movieList={popularList} onClick={handleClick}/> }
+        <PopularList movieList={popularList} /> }
         <ToastContainer autoClose={3000}/> 
       </div>
     </div>

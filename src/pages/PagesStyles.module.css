@@ -11,3 +11,29 @@
   row-gap: 10px;
 };
 
+
+.movieCard {
+  display: flex;
+  
+}
+
+img.poster{
+  display: block;
+  width: 200px;
+  height: 300px;  
+  outline: 1px solid red;
+}
+
+ul.movieDetails {
+  padding: 10px;
+}
+
+ul.movieDetails li+li {
+  margin-top: 5px;
+}
+
+p, h1, h2, h3 {
+  text-decoration: none;
+}
+
+
