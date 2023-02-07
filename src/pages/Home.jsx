@@ -7,7 +7,8 @@ import Loader from "components/Loader";
 
 import css from './PagesStyles.module.css';
 
-const Home = ({ handleMovieChoose }) =>{
+
+const Home = () =>{
   const [popularList, setPopularList] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -38,20 +39,17 @@ const Home = ({ handleMovieChoose }) =>{
 
   console.log('popularList after useEffect: ' , popularList, ' , ', Date.now());
 
-  const handleClick = (movieId) => {
-    handleMovieChoose(movieId);
-  }
-
   return (
     <div className={css.HomeContainer}>
       <h1>Trending today</h1> 
-      <div className={css.HomeDynamic}>
-        
+
+      <div>
         { error && <h1> Something wrong. Try to reload this page.</h1> }
         { loading && <Loader/> }
+        
         { popularList.length > 0 && 
-        // <PopularList movieList={popularList} onClick={handleClick}/> }
         <PopularList movieList={popularList} /> }
+
         <ToastContainer autoClose={3000}/> 
       </div>
     </div>

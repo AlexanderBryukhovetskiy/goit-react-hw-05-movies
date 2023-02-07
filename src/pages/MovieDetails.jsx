@@ -20,7 +20,8 @@ const MovieDetails = () => {
         setLoading(true);
 
         const response = await fetchMovieDetails(params.movieId);
-        console.log('response.data.backdrop_path in MovieDetails : ', response.data.backdrop_path);
+
+        // console.log('response.data.backdrop_path in MovieDetails : ', response.data.backdrop_path);
 
         if ( !response ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page.`));
@@ -35,12 +36,10 @@ const MovieDetails = () => {
       finally { setLoading(false) };
     }
     getMovieDetails();
-    console.log('movieData :', movieData);
-    // console.log('movieData.release_date :', movieData.release_date);
-  }, [params.movieId] );
 
-  // const releaseYear = movieData.release_date.getFullYear();
-  // console.log('releaseYear :', releaseYear);
+    console.log('movieData :', movieData);
+ 
+  }, [params.movieId] );
 
   return (
 
@@ -49,19 +48,23 @@ const MovieDetails = () => {
     { loading && <Loader/>}
 
     <div className={css.movieCard}>
-      <img src={'movieData.backdrop_path'} alt={movieData.title || movieData.name} className={css.poster} />
+      <img src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`} alt={movieData.title || movieData.name} className={css.poster} />
             
       <div className={css.movieDetails}>
       
-          <h1>{movieData.title} ({movieData.release_date})</h1>
-          <h3>User score: {movieData.vote_average*10}%</h3>
-          <p>{movieData.overview}</p>
-          <p> Genres</p>
-          {/* <ul>
-          {movieData.genres.map(....)}
-          </ul> */}
-   
-       
+        <h1>{movieData.title} ({movieData.release_date?.slice(0, 4)})</h1>
+
+        <h3>User score: {movieData.vote_average*10}%</h3>
+
+        <h2>Overview</h2>
+        <p>{movieData.overview}</p>
+        
+        <h3> Genres</h3>
+        <ul>
+        {movieData?.genres?.map( genre  =><li key={genre.id}>{genre.name}</li>
+          )}
+        </ul>
+
       </div>
     </div>
     <ToastContainer autoClose={3000}/> 

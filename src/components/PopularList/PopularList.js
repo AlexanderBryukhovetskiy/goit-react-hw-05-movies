@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './PopularList.module.css';
 
-const PopularList = ({ movieList }, handleMovieChoose ) => {
+const PopularList = ({ movieList }) => {
 
   return (
     <ul className={css.popularList}>
@@ -19,7 +19,6 @@ const PopularList = ({ movieList }, handleMovieChoose ) => {
 PopularList.propTypes = {
   movieList: PropTypes.arrayOf(
     PropTypes.object).isRequired,
-  handleMovieChoose: PropTypes.func,
 };
 
 export default PopularList;

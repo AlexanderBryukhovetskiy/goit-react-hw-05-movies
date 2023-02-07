@@ -4,36 +4,37 @@
   row-gap: 10px;
 };
 
-
-.HomeDynamic{
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-};
-
-
 .movieCard {
   display: flex;
+  width: 100%;
   
 }
 
 img.poster{
   display: block;
   width: 200px;
-  height: 300px;  
-  outline: 1px solid red;
+  height: auto;  
 }
 
-ul.movieDetails {
+.movieDetails {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  margin: 0;
   padding: 10px;
-}
 
-ul.movieDetails li+li {
-  margin-top: 5px;
+  max-width: 600px;
+  outline: 2px solid orangered;
 }
 
 p, h1, h2, h3 {
   text-decoration: none;
+}
+
+.redColor {
+  color: red;
+  font-weight: 700;
 }
 
 
