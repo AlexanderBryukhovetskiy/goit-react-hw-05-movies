@@ -29,7 +29,7 @@ const Cast = () => {
           return toast(`Something wrong. Try to reload this page.`);
         }
 
-        setCastData(response.data.cast);//??
+        setCastData(response.data);//??
       }
       catch(error) { 
         setError(error);
@@ -38,7 +38,7 @@ const Cast = () => {
     }
     getCast();
 
-    console.log('castData :', castData);
+    //console.log('castData :', castData);
 
   }, [params.movieId] );
 
@@ -48,27 +48,20 @@ const Cast = () => {
     { error && <h1> Something wrong. Try to reload this page.</h1> }
     { loading && <Loader/>}
 
-    <h1 className={css.castWillBeHere}>CAST will be here</h1>
-
-    {/* <div className={css.cast}> 
-      <img src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`} alt={movieData.title || movieData.name} className={css.poster} />
-            
-      <div className={css.movieDetails}>
-      
-        <h1>{movieData.title} ({movieData.release_date?.slice(0, 4)})</h1>
-
-        <h3>User score: {movieData.vote_average*10}%</h3>
-
-        <h2>Overview</h2>
-        <p>{movieData.overview}</p>
-        
-        <h3> Genres</h3>
+    <div className={css.cast}> 
+      {/* <img src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`} alt={movieData.title || movieData.name} className={css.poster} />
+       */}
         <ul>
-        {castData?.genres?.map( genre  =><li key={genre.id}>{genre.name}</li>
+        {castData?.cast?.map( actor  =>
+        <li key={actor.cast_id} className={css.actor}>
+            {/* <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movieData.title || movieData.name} className={css.poster} /> */}
+            <p>{actor.name}</p>
+            <p>Character:  {actor.character}</p>
+        </li>
           )}
         </ul>  
-      </div>  
-    </div> */}
+
+    </div>
     <ToastContainer autoClose={3000}/> 
   </div>
   

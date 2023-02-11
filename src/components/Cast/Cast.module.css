@@ -1,11 +1,13 @@
 .cast {
   padding: 10px;
   outline: 1px solid greenyellow; 
-  width: 500px;
-  height: 300px;
+
 }
 
-.castWillBeHere{
-  font-size: 30px;
-  color: greenyellow;
+.actor {
+  text-decoration: none;
+}
+
+.actor + .actor {
+  margin-top: 15px;
 }

@@ -38,7 +38,7 @@ const MovieCard = () =>{
     }
     getMovieDetails();
 
-    console.log('movieData :', movieData);
+    //console.log('movieData :', movieData);
  
   }, [params.movieId] );  
 
