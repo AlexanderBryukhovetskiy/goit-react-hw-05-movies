@@ -22,14 +22,14 @@ const Cast = () => {
 
         const response = await fetchCast(params.movieId);
 
-        console.log('response in Cast : ', response);
+        console.log('response.data.cast in Cast : ', response.data.cast);
 
         if ( !response ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page.`));
           return toast(`Something wrong. Try to reload this page.`);
         }
 
-        setCastData(response.data);//??
+        setCastData(response.data.cast);//??
       }
       catch(error) { 
         setError(error);

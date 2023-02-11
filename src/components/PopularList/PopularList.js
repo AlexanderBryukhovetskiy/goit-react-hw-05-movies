@@ -7,7 +7,7 @@ const PopularList = ({ movieList }) => {
   return (
     <ul className={css.popularList}>
       {movieList.map( movie => (
-        <li key={movie.id} >
+        <li key={movie.id} className={css.movieListItem}>
           <NavLink to={`movies/${movie.id}`} 
           className={css.MovieTitle}> {movie.title || movie.name} </NavLink>
         </li>

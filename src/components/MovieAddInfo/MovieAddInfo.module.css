@@ -1,0 +1,28 @@
+.addInfoContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+  padding: 20px;
+};
+
+.addInfoTitle {
+  font-size: 24px;
+  color: red;
+}
+
+.addList {
+  margin-left: 20px;
+}
+
+.addListItem {
+  list-style: disc;
+}
+
+.addListItem  +.addListItem  {
+  margin-top: 10px;
+}
+
+.addLink {
+  color: rgba(6, 25, 234, 0.642);
+}

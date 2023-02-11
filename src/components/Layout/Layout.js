@@ -6,11 +6,11 @@ const Layout = () => {
   return (
     <>
     <header className={css.container}>
-      <NavLink to='/'>Home</NavLink>
-      <NavLink to='/movies'>Movies</NavLink>
+        <NavLink to='/'>Home</NavLink>
+        <NavLink to='/movies'>Movies</NavLink>
     </header>
 
-    <main className={css.container__main}>
+    <main>
       <Outlet/>
     </main>
     </>

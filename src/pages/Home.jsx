@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import { fetchPopularMovies } from "components/functions";
 import PopularList from "components/PopularList";
 import Loader from "components/Loader";
-
 import css from './PagesStyles.module.css';
 
 
@@ -41,7 +39,7 @@ const Home = () =>{
 
   return (
     <div className={css.HomeContainer}>
-      <h1>Trending today</h1> 
+      <p className={css.movieListTitle}>Trending today</p> 
 
       <div>
         { error && <h1> Something wrong. Try to reload this page.</h1> }
@@ -55,10 +53,5 @@ const Home = () =>{
     </div>
   );
 }
-
-Home.propTypes = {
-  movieId: PropTypes.number,
-  handleMovieChoose: PropTypes.func,
-};
 
 export {Home};

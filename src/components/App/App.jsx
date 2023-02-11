@@ -7,13 +7,13 @@
 import { Routes, Route} from "react-router-dom";
 // import { useState } from "react";
 import PropTypes from 'prop-types';
-import css from './App.module.css';
+
 import Cast from "components/Cast";
 import Reviews from "components/Reviews";
 import { Home } from "pages/Home";
 import { MovieDetails } from "pages/MovieDetails";
 import { Movies } from "pages/Movies";
-import { NotFoundPage } from "pages/NotFoundPage";
+import css from './App.module.css';
 
 import Layout from 'components/Layout';
 
@@ -25,10 +25,11 @@ const App = () => {
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home/>}/>
           <Route path ='movies' element={<Movies/>}/>
-          <Route path='movies/:movieId' element={<MovieDetails/>}/>
-          <Route path='movies/:movieId/cast' element={<Cast/>}/>
-          <Route path='movies/:movieId/reviews' element={<Reviews/>}/>
-          <Route path='*' element={<NotFoundPage/>}/>
+          <Route path='movies/:movieId' element={<MovieDetails/>}>
+            <Route path='cast' element={<Cast/>}/>
+            <Route path='reviews' element={<Reviews/>}/>
+          </Route>
+          <Route path='*' element={<Home/>}/>
         </Route>
       </Routes>
     </>
