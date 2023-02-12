@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Container from 'components/Container';
 import Loader from 'components/Loader';
 import css from './MovieCard.module.css';
+import NoMoviePoster from 'components/NoMoviePoster';
 
 
 const MovieCard = () => {
@@ -51,7 +52,7 @@ const MovieCard = () => {
       { !error && !loading &&    
       (<div className={css.movieCard}>
         <img className={css.poster} 
-        src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}` || "../../images/noPoster2.jpg"} 
+        src={ movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : <NoMoviePoster/>} 
         alt={movieData.title || movieData.name} />
 
         <div className={css.movieDetails}>
