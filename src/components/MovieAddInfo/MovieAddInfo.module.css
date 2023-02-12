@@ -3,12 +3,11 @@
   flex-direction: column;
   row-gap: 10px;
   width: 100%;
-  padding: 20px;
-};
+  padding: 10px 20px;
+}
 
 .addInfoTitle {
-  font-size: 20px;
-  color: red;
+  font-size: 14px;
 }
 
 .addList {
@@ -17,12 +16,14 @@
 
 .addListItem {
   list-style: disc;
+  font-size: 12px;
 }
 
 .addListItem  +.addListItem  {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .addLink {
+  font-size: 12px;
   color: rgba(6, 25, 234, 0.642);
 }

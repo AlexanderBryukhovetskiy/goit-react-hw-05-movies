@@ -35,11 +35,9 @@ const SearchBar = ({onSubmit}) => {
           onChange={handleChange}
           autoComplete="off"
           autoFocus
-          placeholder="Search movie"
+          // placeholder="Search movie"
         />
-        <button type="submit" className={css.SearchFormButton}>
-          <span className={css.SearchFormButtonLabel}>Search</span>
-        </button>
+        <button type="submit" className={css.SearchFormButton}>Search</button>
       </form>
     </header>
   ) 

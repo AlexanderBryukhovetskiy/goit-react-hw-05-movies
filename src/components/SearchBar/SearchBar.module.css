@@ -4,24 +4,21 @@
   position: sticky;
   z-index: 1100;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 0 20px;
   color: #fff;
-  background-color: #3f51b5;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  background-color: inherit;
+  /* box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
 }
 
 .SearchForm {
 display: flex;
 align-items: center;
 width: 100%;
-max-width: 600px;
+max-width: 300px;
 background-color: #fff;
 border-radius: 3px;
 overflow: hidden;
@@ -29,10 +26,10 @@ overflow: hidden;
 
 .SearchFormButton {
 display: inline-block;
-width: 48px;
-height: 48px;
-border: 0;
-background-image: url('https://cdn-icons-png.flaticon.com/512/54/54481.png');
+width: 50px;
+height: 24px;
+border: 1px solid rgba(0, 0, 0, 0.2);;
+/* background-image: url('https://cdn-icons-png.flaticon.com/512/54/54481.png'); */
 background-size: 40%;
 background-repeat: no-repeat;
 background-position: center;
@@ -46,9 +43,9 @@ outline: none;
 opacity: 1;
 }
 
-.SearchFormButtonLabel {
+/* .SearchFormButtonLabel {
 position: absolute;
-width: 1px;
+width: 50px;
 height: 1px;
 padding: 0;
 overflow: hidden;
@@ -56,14 +53,15 @@ clip: rect(0, 0, 0, 0);
 white-space: nowrap;
 clip-path: inset(50%);
 border: 0;
-}
+} */
 
 .SearchFormInput {
 display: inline-block;
-width: 100%;
+width: 80%;
+height: 20px;
 font: inherit;
-font-size: 20px;
-border: none;
+font-size: 12px;
+border: 1px solid rgba(0, 0, 0, 0.2);
 outline: none;
 padding-left: 4px;
 padding-right: 4px;
@@ -71,5 +69,5 @@ padding-right: 4px;
 
 .SearchFormInput::placeholder {
 font: inherit;
-font-size: 18px;
+font-size: 12px;
 }

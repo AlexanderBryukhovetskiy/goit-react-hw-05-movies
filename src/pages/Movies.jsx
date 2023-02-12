@@ -1,79 +1,68 @@
-// import SearchBar from '..components/SearchBar';
-// import { useState, useEffect } from "react";
+
+import { useState, useEffect } from "react";
+import { searchMovies } from '../components/API';
+import SearchBar from "components/SearchBar";
+import Loader from "components/Loader";
+import SearchMoviesList from "components/SearchMoviesList";
 
 const Movies = () =>{
-  // const [searchName, setSearchName] = useState('');
+  const [searchName, setSearchName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [movieList, setMovieList] = useState([]);
 
-  //----------------------searching movies by searchName--------------------
-  // useEffect( () => { 
-  //   //fetchSearchMovies();   -  write this function!!!!
+  useEffect( () => { 
+    console.log('searchName in useEffect:', searchName);
 
-  //   const getSearchList = async () => {
-  //     try {
-  //       // setLoading(true);
+    if ( !searchName ) {
+      return
+    };
+    
+    const getSearchList = async () => {
+      try {
+        console.log('searchName inside getSearchList:', searchName);
+        setLoading(true);
 
-  //       const response = await fetchSearchMovies(searchName);
-  //       // setTotalImages(response.data.totalHits);
-      
-  //       if ( response.data.totalHits === 0 ) {
-  //         return toast(`There are no pictures by word ${searchName}`);
-  //       }
+        const response = await searchMovies(searchName);
+        console.log('response.data in Movies:' , response.data);
 
-  //       if (response.data.totalHits > 0 ) {
-  //         setImageList((prevList) => [...prevList, ...response.data.hits]);
-  //       } 
-  //       else {
-  //         return Promise.reject(new Error(`There are no pictures by word ${searchName}`));
-  //       }
-  //     }
-  //     catch(error) { 
-  //       setError(error);
-  //     }
-  //     finally { setLoading(false) };
-  //   }
-  //   getSearchList();
-  //   }
-  // );
-//------------------------------------------------------------------------------
-  
-    return (
-      <>
-          <>
-          {/* <h1>Trending today</h1>  */}
+        if ( response.data.total_results === 0 ) {
+          return <p>There are no movies by word ${searchName}</p>;
+        }
 
-          {/* { error && <h1> Something wrong. Try to reload this page.</h1> } */}
+        if ( response.data.total_results > 0 ) {
+          setMovieList(response.data.results);
+        } 
+        else {
+          return Promise.reject(new Error(`There are no pictures by word ${searchName}`));
+        }
+      }
+      catch(error) { 
+        setError(error);
+      }
+      finally { setLoading(false) };
+    }
+    getSearchList();
+    // console.log(movieList);
 
-          {/* { loading && <Loader/> } */}
+    }, [searchName] 
+  );
 
+  const handleSubmit = (searchName) => {
+    setMovieList( [] );
+    setSearchName(searchName);
+  } 
 
-          
-          {/* { !imageList.length && !loading && <p className={css.serviceMessage}>Please enter search word</p> }  */}
-        
+  return (
+    <>
+      {!movieList.length && <SearchBar onSubmit={handleSubmit}/>}
 
-          {/* { popularList.length > 0 && 
-            <div>
-              <ImageGallery imageList={imageList}/> 
+      { error && <h1> Something wrong. Try to reload this page.</h1> }
+      { loading && <Loader/> }
 
-              { loading && <Loader/> }
+      { movieList.length > 0 && <SearchMoviesList moviesList={movieList} />}
 
-              { imageList.length > 0 
-                && imageList.length < 500
-                && imageList.length < totalImages 
-                && <Button onClick={loadMore}/>
-              }
-            </div>
-          } */}
-
-          {/* <ToastContainer autoClose={3000}/>  */}
-
-      </>
-
-      {/* <SearchBar> */}
-        <h1>Search Movies List will be here</h1>
-        <ul>
-          <li></li>
-        </ul>
-      </>
+    </>
   );
 };
 

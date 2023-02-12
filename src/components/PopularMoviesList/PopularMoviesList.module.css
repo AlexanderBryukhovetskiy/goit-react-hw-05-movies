@@ -1,4 +1,4 @@
-.popularList{
+.movieList{
   margin-left: 20px;
   padding: 20px;
   list-style: disc;
@@ -8,12 +8,12 @@
   margin-top: 5px;
 }
 
-li {
+.movieListItem {
   font-size: 14px;
   text-decoration: underline;
 }
 
-.MovieTitle {
+.movieTitle {
   font-size: 14px;
   color: rgba(6, 25, 234, 0.642);
 }

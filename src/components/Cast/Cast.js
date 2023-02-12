@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { fetchCast } from 'components/API';
 import { useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'components/Loader';
+import NoCastPhoto from 'components/NoCastPhoto';
 import css from './Cast.module.css';
 
 
@@ -25,7 +25,7 @@ const Cast = () => {
 
         if ( !response ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page.`));
-          return toast(`Something wrong. Try to reload this page.`);
+          return <p>Something wrong. Try to reload this page.</p>;
         }
 
         setCastData(response.data);//??
@@ -36,10 +36,8 @@ const Cast = () => {
       finally { setLoading(false) };
     }
     getCast();
-
-    //console.log('castData :', castData);
-
-  }, [params.movieId] );
+  }, [params.movieId]
+  );
 
   return (
 
@@ -47,21 +45,19 @@ const Cast = () => {
     { error && <h1> Something wrong. Try to reload this page.</h1> }
     { loading && <Loader/>}
 
-    <div className={css.cast}> 
+    <div className={css.castContainer}> 
         <ul>
         {castData?.cast?.map( actor  =>
           <li key={actor.cast_id} className={css.actor}>
-              <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-                  alt={`There is no photo`} 
-                  className={css.actorPhoto}/>
+              <img src={ actor.profile_path ? `https://image.tmdb.org/t/p/w500${actor.profile_path}` : <NoCastPhoto/>}
+                alt={`There is no photo`} 
+                className={css.actorPhoto}/>
               <p className={css.actorInfo}>{actor.name}</p>
-              <p className={css.actorInfo}>Character:  {actor.character}</p>
+              <p className={css.actorInfo}>Character: {actor.character}</p>
           </li>
           )}
         </ul>  
-
     </div>
-    <ToastContainer autoClose={3000}/> 
   </div>
   
   );

@@ -2,8 +2,8 @@ import React from "react";
 import css from "./Loader.module.css";
 import { Circles } from 'react-loader-spinner'
   <Circles
-    height="30"
-    width="30"
+    height="10"
+    width="10"
     color="#4fa94d"
     ariaLabel="circles-loading"
     wrapperStyle={{}}
@@ -13,7 +13,7 @@ import { Circles } from 'react-loader-spinner'
 
   const Loader = () => {
     return (
-      <div className={css.spinner}> <Circles/> </div>
+      <div className={css.spinner}> <Circles/> <Circles/> <Circles/></div>
     )
   };
 

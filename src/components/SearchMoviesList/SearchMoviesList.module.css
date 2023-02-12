@@ -1,0 +1,19 @@
+.movieList{
+  margin-left: 20px;
+  padding: 20px;
+  list-style: disc;
+}
+
+.movieListItem + .movieListItem {
+  margin-top: 5px;
+}
+
+.movieListItem {
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.movieTitle {
+  font-size: 14px;
+  color: rgba(6, 25, 234, 0.642);
+}

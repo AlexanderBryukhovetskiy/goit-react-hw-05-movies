@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
 import { fetchPopularMovies } from "components/API";
-import PopularList from "components/PopularList";
+import MovieList from "components/PopularMoviesList";
 import Loader from "components/Loader";
 import css from './PagesStyles.module.css';
 
@@ -24,7 +23,7 @@ const Home = () =>{
       
         if ( !response.data.results.length ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page.`));
-          return toast(`Something wrong. Try to reload this page.`);
+          return <p>Something wrong. Try to reload this page</p>;
         }
       }
       catch(error) { 
@@ -46,9 +45,7 @@ const Home = () =>{
         { loading && <Loader/> }
         
         { popularList.length > 0 && 
-        <PopularList movieList={popularList} /> }
-
-        <ToastContainer autoClose={3000}/> 
+        <MovieList moviesList={popularList} /> }
       </div>
     </div>
   );
