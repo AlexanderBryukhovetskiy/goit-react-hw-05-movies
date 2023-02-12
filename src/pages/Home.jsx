@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import { fetchPopularMovies } from "components/functions";
+import { fetchPopularMovies } from "components/API";
 import PopularList from "components/PopularList";
 import Loader from "components/Loader";
 import css from './PagesStyles.module.css';

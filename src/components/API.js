@@ -12,7 +12,6 @@ export const fetchPopularMovies = async () => {
   return popularMoviesList;
 }
 
-
 export const fetchMovieDetails = async (movieId) => {
 
   const movieDetails = axios.get(`${BASE_URL}/movie/${movieId}?api_key=${KEY}`);
@@ -21,7 +20,6 @@ export const fetchMovieDetails = async (movieId) => {
 
   return movieDetails;
 }
-
 
 export const fetchCast = async (movieId) => {
 
@@ -33,9 +31,9 @@ export const fetchCast = async (movieId) => {
 }
 
 
-export const fetchReview = async (movieId) => {
+export const fetchReviews = async (movieId) => {
 
-  const movieReviews = axios.get(`${BASE_URL}/movie/${movieId}/review?api_key=${KEY}`);
+  const movieReviews = axios.get(`${BASE_URL}/movie/${movieId}/reviews?api_key=${KEY}`);
 
   console.log(movieReviews);
 

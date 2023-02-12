@@ -6,8 +6,8 @@ const Layout = () => {
   return (
     <>
     <header className={css.container}>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/movies'>Movies</NavLink>
+        <NavLink className={css.headerLink} to='/'>Home</NavLink>
+        <NavLink className={css.headerLink} to='/movies'>Movies</NavLink>
     </header>
 
     <main>

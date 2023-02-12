@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { fetchCast } from 'components/functions';
+import { fetchCast } from 'components/API';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from 'components/Loader';
@@ -22,7 +21,7 @@ const Cast = () => {
 
         const response = await fetchCast(params.movieId);
 
-        console.log('response.data.cast in Cast : ', response.data.cast);
+        console.log('response.data in Cast : ', response.data);
 
         if ( !response ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page.`));
@@ -49,15 +48,15 @@ const Cast = () => {
     { loading && <Loader/>}
 
     <div className={css.cast}> 
-      {/* <img src={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`} alt={movieData.title || movieData.name} className={css.poster} />
-       */}
         <ul>
         {castData?.cast?.map( actor  =>
-        <li key={actor.cast_id} className={css.actor}>
-            {/* <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movieData.title || movieData.name} className={css.poster} /> */}
-            <p>{actor.name}</p>
-            <p>Character:  {actor.character}</p>
-        </li>
+          <li key={actor.cast_id} className={css.actor}>
+              <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                  alt={`There is no photo`} 
+                  className={css.actorPhoto}/>
+              <p className={css.actorInfo}>{actor.name}</p>
+              <p className={css.actorInfo}>Character:  {actor.character}</p>
+          </li>
           )}
         </ul>  
 

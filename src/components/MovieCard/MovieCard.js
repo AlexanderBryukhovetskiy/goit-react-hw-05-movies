@@ -1,6 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
-import { fetchMovieDetails } from 'components/functions';
+import { fetchMovieDetails } from 'components/API';
 import { useParams } from 'react-router-dom';
 import Container from 'components/Container';
 import Loader from 'components/Loader';

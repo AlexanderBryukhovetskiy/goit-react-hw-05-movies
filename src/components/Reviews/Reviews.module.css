@@ -1,0 +1,29 @@
+.reviewsContainer {
+  padding: 20px;
+}
+
+.noReviewsMessage {
+  font-size: 20px;
+  font-weight: 500;
+  color: grey;
+}
+
+.reviewsList {
+  list-style: disc;
+}
+
+.review {
+  display: flex;
+  flex-direction: column; 
+  row-gap: 10px;
+  text-decoration: none;
+}
+
+.review+.review{
+  margin-top: 20px;
+}
+
+.reviewAuthor {
+  font-size: 20px;
+  font-weight: 700;
+}
