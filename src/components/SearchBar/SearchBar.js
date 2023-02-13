@@ -1,27 +1,24 @@
 import {useState} from "react";
 import PropTypes from "prop-types";
 import css from "./SearchBar.module.css";
-import { toast } from 'react-toastify';
 
 const SearchBar = ({onSubmit}) => {
-  const [searchName, setSearchName] = useState('');
+  const [query, setQuery] = useState('');
 
   const handleChange = event => {
     const { value } = event.currentTarget;
-    setSearchName(value);
+    setQuery(value);
   }  
   
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (searchName.trim() === '') {
-      toast('Enter request to search');  
-      return;
+    if (query.trim() === '') {
+      return alert ('Enter query to search');
     }
 
-    onSubmit(searchName); 
-
-    setSearchName('');
+    onSubmit(query); 
+    setQuery('');
   }
 
   return (
@@ -30,12 +27,12 @@ const SearchBar = ({onSubmit}) => {
         <input
           className={css.SearchFormInput}
           type="text"
-          name="searchName"
-          value={searchName}
+          name="query"
+          value={query}
           onChange={handleChange}
           autoComplete="off"
           autoFocus
-          // placeholder="Search movie"
+          placeholder="Search movie"
         />
         <button type="submit" className={css.SearchFormButton}>Search</button>
       </form>

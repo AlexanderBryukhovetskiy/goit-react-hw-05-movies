@@ -14,10 +14,11 @@ const MovieDetails = () => {
       
         <MovieAddInfo/>
       
-        </Container>
+      </Container>
+
       <Outlet className={css.add_container}/>
     </>
   );
 };
 
-export {MovieDetails};
+export default MovieDetails;

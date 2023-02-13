@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchCast } from 'components/API';
 import { useParams } from 'react-router-dom';
 import Loader from 'components/Loader';
-import NoCastPhoto from 'components/NoCastPhoto';
+import NoCastPhoto from 'images/bunny.jpg';
 import css from './Cast.module.css';
 
 

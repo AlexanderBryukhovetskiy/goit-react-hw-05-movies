@@ -1,40 +1,44 @@
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { searchMovies } from '../components/API';
 import SearchBar from "components/SearchBar";
 import Loader from "components/Loader";
 import SearchMoviesList from "components/SearchMoviesList";
 
 const Movies = () =>{
-  const [searchName, setSearchName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [movieList, setMovieList] = useState([]);
 
-  useEffect( () => { 
-    console.log('searchName in useEffect:', searchName);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-    if ( !searchName ) {
+  useEffect( () => { 
+    console.log('searchParams in Movies.useEffect:', searchParams);
+
+    if ( !searchParams ) {
+      console.log('searchParams is empty:', searchParams);
       return
     };
     
     const getSearchList = async () => {
       try {
-        console.log('searchName inside getSearchList:', searchName);
+        console.log('searchParams inside getSearchList:', searchParams);
+        
         setLoading(true);
 
-        const response = await searchMovies(searchName);
+        const response = await searchMovies(searchParams);
         console.log('response.data in Movies:' , response.data);
 
         if ( response.data.total_results === 0 ) {
-          return <p>There are no movies by word ${searchName}</p>;
+          return <p>There are no movies by query ${searchParams}</p>;
         }
 
         if ( response.data.total_results > 0 ) {
           setMovieList(response.data.results);
         } 
         else {
-          return Promise.reject(new Error(`There are no pictures by word ${searchName}`));
+          return Promise.reject(new Error(`There are no movies by query ${searchParams}`));
         }
       }
       catch(error) { 
@@ -42,28 +46,32 @@ const Movies = () =>{
       }
       finally { setLoading(false) };
     }
-    getSearchList();
-    // console.log(movieList);
+    getSearchList(searchParams);
 
-    }, [searchName] 
+    console.log(movieList);
+
+    }, [searchParams] 
   );
 
-  const handleSubmit = (searchName) => {
+  const handleSubmit = (query) => {
     setMovieList( [] );
-    setSearchName(searchName);
+    setSearchParams( {query} );
+    console.log({query});
   } 
+
+  // console.log('searchParams after submit', searchParams);
 
   return (
     <>
-      {!movieList.length && <SearchBar onSubmit={handleSubmit}/>}
+      <SearchBar onSubmit={handleSubmit}/>
 
       { error && <h1> Something wrong. Try to reload this page.</h1> }
       { loading && <Loader/> }
 
-      { movieList.length > 0 && <SearchMoviesList moviesList={movieList} />}
+      <SearchMoviesList moviesList={movieList} />
 
     </>
   );
 };
 
-export {Movies};
+export default Movies;

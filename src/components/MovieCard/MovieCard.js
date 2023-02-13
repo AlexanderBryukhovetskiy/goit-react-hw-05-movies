@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Container from 'components/Container';
 import Loader from 'components/Loader';
 import css from './MovieCard.module.css';
-import NoMoviePoster from 'components/NoMoviePoster';
+import NoMoviePoster from 'images/noPoster2.jpg';
 
 
 const MovieCard = () => {

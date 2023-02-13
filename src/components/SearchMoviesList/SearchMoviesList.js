@@ -18,7 +18,7 @@ const SearchMoviesList = ({ moviesList }) => {
 
 SearchMoviesList.propTypes = {
   moviesList: PropTypes.arrayOf(
-    PropTypes.object).isRequired,
+    PropTypes.object),
 };
 
 export default SearchMoviesList;
