@@ -52,7 +52,7 @@ const MovieCard = () => {
       { !error && !loading &&    
       (<div className={css.movieCard}>
         <img className={css.poster} 
-        src={ movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : <NoMoviePoster/>} 
+        src={ movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : NoMoviePoster} 
         alt={movieData.title || movieData.name} />
 
         <div className={css.movieDetails}>
