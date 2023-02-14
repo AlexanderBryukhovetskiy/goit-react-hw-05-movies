@@ -5,6 +5,7 @@ import { searchMovies } from '../components/API';
 import SearchBar from "components/SearchBar";
 import Loader from "components/Loader";
 import SearchMoviesList from "components/SearchMoviesList";
+import css from './PagesStyles.module.css';
 
 const Movies = () =>{
   const [loading, setLoading] = useState(false);

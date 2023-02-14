@@ -37,9 +37,6 @@ const Reviews = () => {
       };
     }
     getReviews();
-
-    console.log('reviewsData :', reviewsData);
-
   }, [params.movieId] );
 
 

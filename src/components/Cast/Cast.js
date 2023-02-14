@@ -52,7 +52,7 @@ const Cast = () => {
         {castData?.cast?.map( actor  =>
           <li key={actor.cast_id} className={css.actor}>
               <img src={ actor.profile_path ? `https://image.tmdb.org/t/p/w500${actor.profile_path}` : NoCastPhoto}
-                alt={`There is no photo`} 
+                alt={``} 
                 className={css.actorPhoto}/>
               <p className={css.actorInfo}>{actor.name}</p>
               <p className={css.actorInfo}>Character: {actor.character}</p>
