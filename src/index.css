@@ -40,3 +40,25 @@ img {
 .active {
   color: rgba(6, 25, 234, 0.642);
 }
+.HomeContainer{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 5px;
+};
+
+h1.movieListTitle {
+  margin-left: 2px;
+  font-size: 20px;
+};
+
+a.backLink {
+  padding: 3px 6px;
+  margin-left: 20px;
+  outline: 1px solid black;
+}; 
+
+.backButton {
+  font-size: 12px;
+  border: 2px solid red;
+}

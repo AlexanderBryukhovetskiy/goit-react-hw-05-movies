@@ -10,9 +10,15 @@ h1.movieListTitle {
   font-size: 20px;
 };
 
-button {
-  padding: 3px 20px;
+a.backLink {
+  padding: 3px 6px;
   margin-left: 20px;
-};
+  outline: 1px solid black;
+}; 
+
+.backButton {
+  font-size: 12px;
+  border: 2px solid red;
+}
 
 
