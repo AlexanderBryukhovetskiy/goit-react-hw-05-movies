@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { fetchCast } from 'components/API';
 import { useParams } from 'react-router-dom';
-import Loader from 'components/Loader';
+// import Loader from 'components/Loader';
 import NoCastPhoto from 'images/bunny.jpg';
 import css from './Cast.module.css';
 
 
 const Cast = () => {
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [castData, setCastData] = useState({});
 
   const params = useParams();
@@ -17,7 +17,7 @@ const Cast = () => {
   useEffect( () => {
     const getCast = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
 
         const response = await fetchCast(params.movieId);
 
@@ -33,7 +33,9 @@ const Cast = () => {
       catch(error) { 
         setError(error);
       }
-      finally { setLoading(false) };
+      finally { 
+        // setLoading(false) 
+      };
     }
     getCast();
   }, [params.movieId]
@@ -42,8 +44,8 @@ const Cast = () => {
   return (
 
   <div>
-    { error && <h1> Something wrong. Try to reload this page.</h1> }
-    { loading && <Loader/>}
+    { error && <h1 className={css.errorMessage}> Something wrong. Try to reload this page.</h1> }
+    {/* { loading && <Loader/>} */}
 
     <div className={css.castContainer}> 
         <ul>

@@ -9,9 +9,9 @@ a.active {
   color: rgba(6, 25, 234, 0.642);
 }
 
-a:first-child {
+/* a:first-child {
   margin-left: 20px;
-}
+} */
 
 .container {
   display: flex;
@@ -19,7 +19,7 @@ a:first-child {
   align-items: flex-start;
   justify-content: flex-start;
   margin: 0;
-  padding: 10px 0;
+  padding: 10px 20px;
   
   border-bottom: 2px solid rgb(202, 198, 198);
 }

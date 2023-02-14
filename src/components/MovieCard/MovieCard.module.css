@@ -8,8 +8,9 @@
 }
 
 .errorMessage{
-  font-size: 16px;
-  color:rgb(202, 198, 198);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(202, 198, 198);;
 }
 
 .movieCard {
@@ -21,8 +22,8 @@
 
 .poster{
   display: block;
-  height: 300px;  
-  width: auto;
+  width: 200px;
+  height: 300px;
 }
 
 .movieDetails {

@@ -1,16 +1,15 @@
-import { ToastContainer, toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import { fetchMovieDetails } from 'components/API';
 import { useParams } from 'react-router-dom';
 import Container from 'components/Container';
-import Loader from 'components/Loader';
+// import Loader from 'components/Loader';
 import css from './MovieCard.module.css';
 import NoMoviePoster from 'images/noPoster2.jpg';
 
 
 const MovieCard = () => {
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [movieData, setMovieData] = useState({});
 
   const params = useParams();
@@ -19,7 +18,7 @@ const MovieCard = () => {
   useEffect( () => {
     const getMovieDetails = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
 
         const response = await fetchMovieDetails(params.movieId);
 
@@ -27,7 +26,7 @@ const MovieCard = () => {
 
         if ( !response ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page or choose another movie.`));
-          return toast(`Something wrong. Try to reload this page.`);
+          return <p className={css.errorMessage}>Something wrong. Try to reload this page</p>;
         }
 
         setMovieData(response.data);
@@ -35,7 +34,9 @@ const MovieCard = () => {
       catch(error) { 
         setError(error);
       }
-      finally { setLoading(false) };
+      finally { 
+        // setLoading(false) 
+      };
     }
     getMovieDetails();
 
@@ -47,13 +48,15 @@ const MovieCard = () => {
     <Container>
       
       { error && <h1 className={css.errorMessage}> Something wrong. Try to reload this page.</h1> }
-      { loading && <Loader/>}
 
-      { !error && !loading &&    
+      {/* { loading && <Loader/>} */}
+
+      { !error && 
+      // !loading &&    
       (<div className={css.movieCard}>
         <img className={css.poster} 
         src={ movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : NoMoviePoster} 
-        alt={movieData.title || movieData.name} />
+        alt={movieData.title || movieData.name}/>
 
         <div className={css.movieDetails}>
           <h1 className={css.MovieTitle}>{movieData.title} ({movieData.release_date?.slice(0, 4)})</h1>
@@ -69,8 +72,7 @@ const MovieCard = () => {
           )}
           </ul>
         </div>
-  
-      <ToastContainer autoClose={3000}/> 
+
       </div>
       )}
     </Container>

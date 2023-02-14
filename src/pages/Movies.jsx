@@ -14,31 +14,31 @@ const Movies = () =>{
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect( () => { 
-    console.log('searchParams in Movies.useEffect:', searchParams);
 
-    if ( !searchParams ) {
-      console.log('searchParams is empty:', searchParams);
+    const query= searchParams.get('query'); 
+    // console.log(query);
+    if ( !query ) {
+      console.log('There is no query in searchParams');
       return
     };
     
     const getSearchList = async () => {
+      // console.log('query inside getSearchList before try:', query);
       try {
-        console.log('searchParams inside getSearchList:', searchParams);
-        
         setLoading(true);
 
-        const response = await searchMovies(searchParams);
-        console.log('response.data in Movies:' , response.data);
+        const response = await searchMovies(query);
+        console.log('response.data in Movies :' , response.data);
 
         if ( response.data.total_results === 0 ) {
-          return <p>There are no movies by query ${searchParams}</p>;
+          return <p>There are no movies by query ${query}</p>;
         }
 
         if ( response.data.total_results > 0 ) {
           setMovieList(response.data.results);
         } 
         else {
-          return Promise.reject(new Error(`There are no movies by query ${searchParams}`));
+          return Promise.reject(new Error(`There are no movies by query ${query}`));
         }
       }
       catch(error) { 
@@ -46,9 +46,7 @@ const Movies = () =>{
       }
       finally { setLoading(false) };
     }
-    getSearchList(searchParams);
-
-    console.log(movieList);
+    getSearchList();
 
     }, [searchParams] 
   );
@@ -59,17 +57,14 @@ const Movies = () =>{
     console.log({query});
   } 
 
-  // console.log('searchParams after submit', searchParams);
-
   return (
     <>
       <SearchBar onSubmit={handleSubmit}/>
 
-      { error && <h1> Something wrong. Try to reload this page.</h1> }
+      { error && <h1 className={css.errorMessage}> Something wrong. Try to reload this page.</h1> }
       { loading && <Loader/> }
 
       <SearchMoviesList moviesList={movieList} />
-
     </>
   );
 };

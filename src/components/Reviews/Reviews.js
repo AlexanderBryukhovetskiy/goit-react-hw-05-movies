@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { fetchReviews } from 'components/API';
 import { useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import Loader from 'components/Loader';
+// import Loader from 'components/Loader';
 import css from "./Reviews.module.css";
 
 
 const Reviews = () => {
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [reviewsData, setReviewsData] = useState([]);
 
   const params = useParams();
@@ -17,7 +16,7 @@ const Reviews = () => {
   useEffect( () => {
     const getReviews = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
 
         const response = await fetchReviews(params.movieId);
 
@@ -25,7 +24,7 @@ const Reviews = () => {
 
         if ( !response ) {
           Promise.reject(new Error(`Something wrong. Try to reload this page.`));
-          return toast(`Something wrong. Try to reload this page.`);
+          return <p className={css.errorMessage}>Something wrong. Try to reload this page.</p>;
         }
 
         setReviewsData(response.data);
@@ -33,7 +32,9 @@ const Reviews = () => {
       catch(error) { 
         setError(error);
       }
-      finally { setLoading(false) };
+      finally { 
+        // setLoading(false) 
+      };
     }
     getReviews();
 
@@ -46,8 +47,8 @@ const Reviews = () => {
     
   <div className={css.reviewsContainer}>
 
-    { error && <h1> Something wrong. Try to reload this page.</h1> }
-    { loading && <Loader/>}
+    { error && <h1 className={css.errorMessage}> Something wrong. Try to reload this page.</h1> }
+    {/* { loading && <Loader/>} */}
 
     {reviewsData?.results?.length === 0 &&
     <h1 className={css.noReviewsMessage}>Sorry, this movie has not any review </h1>}
@@ -55,14 +56,12 @@ const Reviews = () => {
     {reviewsData?.results?.length > 0 &&
     <ul className={css.reviewsList}>
       {reviewsData?.results?.map( review  =>
-        <li key={review.id} className={css.review}>
+        <li key={review.id} className={css.reviewListItem}>
           <h2 className={css.reviewAuthor}>Author: {review.author}</h2>
-          <p className={css.reviewContent}>{review.content}</p>
+          <p className={css.reviewContext}>{review.content}</p>
       </li>
       )}
     </ul> } 
-
-    <ToastContainer autoClose={3000}/> 
   </div>
   );
 };

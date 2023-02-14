@@ -2,28 +2,33 @@
   padding: 20px;
 }
 
-.noReviewsMessage {
-  font-size: 20px;
-  font-weight: 500;
-  color: grey;
+.noReviewsMessage, .errorMessage {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(202, 198, 198);
 }
 
 .reviewsList {
   list-style: disc;
 }
 
-.review {
+.reviewListItem {
   display: flex;
   flex-direction: column; 
   row-gap: 10px;
   text-decoration: none;
 }
 
-.review+.review{
+.reviewListItem + .reviewListItem {
   margin-top: 20px;
 }
 
 .reviewAuthor {
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 700;
+}
+
+.reviewContext {
+  font-size: 12px;
+  font-weight: 400;
 }
